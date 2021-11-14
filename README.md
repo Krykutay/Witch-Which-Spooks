@@ -1,6 +1,8 @@
 # Witch-Which-Spooks
 A spooky witch game on Unity
 
+![unity logo](https://user-images.githubusercontent.com/44427408/141692619-6d3b3148-0e20-42f7-901d-5a878551c87d.png)
+
 To play, click the link below!
 https://simmer.io/@Krykutay/witchwhich-spooks
 
