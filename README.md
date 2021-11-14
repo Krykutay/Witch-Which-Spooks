@@ -1,7 +1,8 @@
 # Witch-Which-Spooks
 A spooky witch game on Unity
 
-![unity logo](https://user-images.githubusercontent.com/44427408/141692619-6d3b3148-0e20-42f7-901d-5a878551c87d.png)
+![Screenshot](https://user-images.githubusercontent.com/44427408/141692654-8390d441-48e1-456c-abf3-83f14b3df1df.png)
+
 
 To play, click the link below!
 https://simmer.io/@Krykutay/witchwhich-spooks
@@ -17,3 +18,7 @@ Keybindings can be altered on the controls settings.
 For better detailed hints, check "How To Play" tab on the Menu.
 
 Enjoy getting rick rolled!
+
+![screenshot2](https://user-images.githubusercontent.com/44427408/141692662-12340863-04e8-4596-91c4-304af5258d89.png)
+
+![unity logo](https://user-images.githubusercontent.com/44427408/141692619-6d3b3148-0e20-42f7-901d-5a878551c87d.png)
