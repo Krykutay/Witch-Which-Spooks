@@ -21,6 +21,16 @@ public class ControlsDialogMenu : MonoBehaviour
     bool _hasControlsChanged;
     int _keybindIndex;
 
+    void OnDisable()
+    {
+        if (_waitingForInputPanels[_keybindIndex].activeSelf)
+        {
+            _waitingForInputPanels[_keybindIndex].SetActive(false);
+            _actions.Enable();
+            _rebindingOperation.Dispose();
+        }
+    }
+
     public void AssignKeybinding(int keybindIndex)  // 0 for jump, 1 for Fire
     {
         _keybindIndex = keybindIndex;
