@@ -21,6 +21,7 @@ public class GameController : MonoBehaviour
     [SerializeField] float _coinSpawnTimerMax = 4.5f;
     [SerializeField] float _enemySpawnTimerMax = 5.8f;
 
+    public State currentState { get; private set; }
     public float initialMoveLeftSpeed { get { return _initiaMovelLeftSpeed; } }
     public float handSpawnTimerMax { get { return _handSpawnTimerMax; } }
     public float powerupSpawnTimerMax { get { return _powerupSpawnTimerMax; } }
@@ -34,7 +35,6 @@ public class GameController : MonoBehaviour
     float _difficultyTimer;
     int _maxDifficulty;
 
-    State _currentState;
     SoundManager _soundManagerInstance;
 
     static GameController _instance;
@@ -48,7 +48,7 @@ public class GameController : MonoBehaviour
     {
         _instance = this;
 
-        _currentState = State.Playing;
+        currentState = State.Playing;
 
         _soundManagerInstance = SoundManager.GetInstance();
     }
@@ -65,7 +65,7 @@ public class GameController : MonoBehaviour
 
     void Update()
     {
-        if (_currentState == State.Playing)
+        if (currentState == State.Playing)
         {
             _difficultyTimer -= Time.deltaTime;
             if (_difficultyTimer < 0)
@@ -88,23 +88,22 @@ public class GameController : MonoBehaviour
         _gameoverPanel.SetActive(true);
         _soundManagerInstance.Stop(SoundManager.SoundTags.Ambient);
         _soundManagerInstance.Play(SoundManager.SoundTags.Gameover);
-        _currentState = State.PlayerStop;
+        currentState = State.PlayerStop;
     }
 
     public void Game_Resumed()
     {
         Time.timeScale = 1f;
-        _currentState = State.Playing;
+        currentState = State.Playing;
     }
 
     public void Game_Paused()
     {
-        if (_currentState == State.Playing)
+        if (currentState == State.Playing)
         {
             _menu.gameObject.SetActive(true);
             Time.timeScale = 0f;
-            _currentState = State.PlayerStop;
-            
+            currentState = State.PlayerStop;
         }
     }
 
@@ -124,11 +123,6 @@ public class GameController : MonoBehaviour
     public float GetMoveLeftSpeed()
     {
         return _moveLeftSpeed;
-    }
-
-    public State GetCurrentState()
-    {
-        return GameController.GetInstance()._currentState;
     }
          
 }

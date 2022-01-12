@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using UnityEngine;
 
 public class Powerup : MonoBehaviour
@@ -16,6 +15,9 @@ public class Powerup : MonoBehaviour
 
     [SerializeField] string _powerupPoolKey;
 
+    float _lifeTime;
+    float _spawnTime;
+
     ObjectPoolingManager _objectPoolingManagerInstance;
     GameController _gameControllerInstance;
     SoundManager _soundManagerInstance;
@@ -29,21 +31,18 @@ public class Powerup : MonoBehaviour
 
     void OnEnable()
     {
-        StartCoroutine(Lifetime((transform.position.x - _gameControllerInstance.objectsLeftSideDepsawnPointOnX) / _gameControllerInstance.GetMoveLeftSpeed()));
-    }
-
-    IEnumerator Lifetime(float duration)
-    {
-        yield return new WaitForSeconds(duration);
-        _objectPoolingManagerInstance.ReturnToPool(_powerupPoolKey, this.gameObject);
+        _spawnTime = Time.time;
+        _lifeTime = (transform.position.x - _gameControllerInstance.objectsLeftSideDepsawnPointOnX) / _gameControllerInstance.GetMoveLeftSpeed();
     }
 
     void Update()
     {
-        if (_gameControllerInstance.GetCurrentState() == State.Playing)
+        if (Time.time > _spawnTime + _lifeTime)
         {
-            transform.position += Vector3.left * Time.deltaTime * _gameControllerInstance.GetMoveLeftSpeed();
+            _objectPoolingManagerInstance.ReturnToPool(_powerupPoolKey, gameObject);
         }
+
+        transform.position += _gameControllerInstance.GetMoveLeftSpeed() * Time.deltaTime * Vector3.left;
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -53,7 +52,7 @@ public class Powerup : MonoBehaviour
             _soundManagerInstance.Play(SoundManager.SoundTags.PotionPickup);
             Collected?.Invoke(this);
 
-            _objectPoolingManagerInstance.ReturnToPool(_powerupPoolKey, this.gameObject);
+            _objectPoolingManagerInstance.ReturnToPool(_powerupPoolKey, gameObject);
         }
     }
 

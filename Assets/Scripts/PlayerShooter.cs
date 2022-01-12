@@ -45,19 +45,20 @@ public class PlayerShooter : MonoBehaviour
 
     void Fire(InputAction.CallbackContext context)
     {
-        if (isManaEnough() && _gameControllerInstance.GetCurrentState() == State.Playing)
-        {
-            GameObject projectile = _objectPoolingManagerInstance.Get("playerFireball");
-            projectile.transform.rotation = Quaternion.Euler(0, 0, 0);
-            projectile.transform.position = _aim.position;
-            projectile.gameObject.SetActive(true);
+        if (isManaEnough() && _gameControllerInstance.currentState != State.Playing)
+            return;
+        
+        GameObject projectile = _objectPoolingManagerInstance.Get("playerFireball");
+        projectile.transform.rotation = Quaternion.Euler(0, 0, 0);
+        projectile.transform.position = _aim.position;
+        projectile.gameObject.SetActive(true);
 
-            if (!_powerupManagement.GetIsBluePowerupActive())
-                _playerManaInstance.TrySpendMana(25);
-            else
-                _playerManaInstance.TrySpendMana(15);
+        if (!_powerupManagement.GetIsBluePowerupActive())
+            _playerManaInstance.TrySpendMana(25);
+        else
+            _playerManaInstance.TrySpendMana(15);
 
-            _soundManagerInstance.Play(SoundManager.SoundTags.FireballLaunch);
-        }
+        _soundManagerInstance.Play(SoundManager.SoundTags.FireballLaunch);
+        
     }
 }

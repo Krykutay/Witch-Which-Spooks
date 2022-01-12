@@ -48,7 +48,7 @@ public class ParticleEffect : MonoBehaviour
 
     void Update()
     {
-        if (_gameControllerInstance.GetCurrentState() == State.Playing)
+        if (_gameControllerInstance.currentState == State.Playing)
         {
             transform.position += Vector3.left * Time.deltaTime * _gameControllerInstance.GetMoveLeftSpeed()/4;
         }

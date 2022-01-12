@@ -10,6 +10,9 @@ public class EnemyFireball : MonoBehaviour
     Collider2D _collider2d;
     Rigidbody2D _rigidbody;
 
+    float _lifeTime;
+    float _spawnTime;
+
     ObjectPoolingManager _objectPoolingManagerInstance;
     SoundManager _soundManagerInstance;
     GameController _gameControllerInstance;
@@ -36,7 +39,8 @@ public class EnemyFireball : MonoBehaviour
 
         _existingEnemyFireballs.Add(this, true);
 
-        StartCoroutine(Lifetime((transform.position.x - _gameControllerInstance.objectsLeftSideDepsawnPointOnX) / Mathf.Abs(_initialVelocity.x)));
+        _spawnTime = Time.time;
+        _lifeTime = (transform.position.x - _gameControllerInstance.objectsLeftSideDepsawnPointOnX) / Mathf.Abs(_initialVelocity.x);
     }
 
     void OnDisable()
@@ -44,10 +48,10 @@ public class EnemyFireball : MonoBehaviour
         _existingEnemyFireballs.Remove(this);
     }
 
-    IEnumerator Lifetime(float duration)
+    void Update()
     {
-        yield return new WaitForSeconds(duration);
-        _objectPoolingManagerInstance.ReturnToPool("enemyFireball", this.gameObject);
+        if (Time.time > _spawnTime + _lifeTime)
+            _objectPoolingManagerInstance.ReturnToPool("enemyFireball", gameObject);
     }
 
     void OnCollisionEnter2D(Collision2D collision)

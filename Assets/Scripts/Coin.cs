@@ -1,10 +1,9 @@
-using System;
-using System.Collections;
 using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
-    public static event Action Collected;
+    float _lifeTime;
+    float _spawnTime;
 
     ObjectPoolingManager _objectPoolingManagerInstance;
     GameController _gameControllerInstance;
@@ -19,21 +18,18 @@ public class Coin : MonoBehaviour
 
     void OnEnable()
     {
-        StartCoroutine(Lifetime((transform.position.x - _gameControllerInstance.objectsLeftSideDepsawnPointOnX) / _gameControllerInstance.GetMoveLeftSpeed()));
-    }
-
-    IEnumerator Lifetime(float duration)
-    {
-        yield return new WaitForSeconds(duration);
-        _objectPoolingManagerInstance.ReturnToPool("coin", this.gameObject);
+        _spawnTime = Time.time;
+        _lifeTime = (transform.position.x - _gameControllerInstance.objectsLeftSideDepsawnPointOnX) / _gameControllerInstance.GetMoveLeftSpeed();
     }
 
     void Update()
     {
-        if (_gameControllerInstance.GetCurrentState() == State.Playing)
+        if (Time.time > _spawnTime + _lifeTime)
         {
-            transform.position += Vector3.left * Time.deltaTime * _gameControllerInstance.GetMoveLeftSpeed();
+            _objectPoolingManagerInstance.ReturnToPool("coin", gameObject);
         }
+
+        transform.position += _gameControllerInstance.GetMoveLeftSpeed() * Time.deltaTime * Vector3.left;
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -41,8 +37,8 @@ public class Coin : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             _soundManagerInstance.Play(SoundManager.SoundTags.CoinPickup);
-            Collected?.Invoke();
-            _objectPoolingManagerInstance.ReturnToPool("coin", this.gameObject);
+            ScoreManager.GetInstance().Coin_Collected();
+            _objectPoolingManagerInstance.ReturnToPool("coin", gameObject);
         }
     }
 

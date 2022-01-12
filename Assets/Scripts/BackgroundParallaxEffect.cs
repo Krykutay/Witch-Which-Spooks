@@ -9,6 +9,8 @@ public class BackgroundParallaxEffect : MonoBehaviour
     float _length;
     float _startPos;
 
+    Vector3 _workSpace;
+
     void Awake()
     {
         _length = GetComponent<SpriteRenderer>().bounds.size.x;
@@ -23,12 +25,15 @@ public class BackgroundParallaxEffect : MonoBehaviour
 
     void Update()
     {
-        if (_gameControllerInstance.GetCurrentState() == State.Playing)
-        {
-            transform.position += Vector3.left * Time.deltaTime * _gameControllerInstance.GetMoveLeftSpeed() * _parallaxEffect;
+        if (_gameControllerInstance.currentState != State.Playing)
+            return;
 
-            if (transform.position.x < _startPos - _length)
-                transform.position = new Vector3(_startPos, transform.position.y, transform.position.z);
+        transform.position += _gameControllerInstance.GetMoveLeftSpeed() * _parallaxEffect * Time.deltaTime * Vector3.left;
+
+        if (transform.position.x < _startPos - _length)
+        {
+            _workSpace.Set(_startPos, transform.position.y, transform.position.z);
+            transform.position = _workSpace;
         }
     }
 }

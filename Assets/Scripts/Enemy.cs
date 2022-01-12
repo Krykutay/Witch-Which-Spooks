@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public static event Action Died;
     public static event Action<Enemy> SpawnCoinOnKilled;
     public static event Action<Enemy> SpawnPowerupOnKilled;
 
@@ -53,7 +52,7 @@ public class Enemy : MonoBehaviour
         SetDestination(destinationPoint);
 
         _healthbar.SetMaxHealth(_health);
-        _healthbar.SetCurrentHealth(_health);
+        _healthbar.SetCurrentHealth(_health, 0);
 
         if (!_existingEnemies.ContainsKey(this))
             _existingEnemies.Add(this, true);
@@ -69,7 +68,7 @@ public class Enemy : MonoBehaviour
         if (collision.collider.CompareTag("PlayerFireball"))
         {
             _currentHealth--;
-            _healthbar.SetCurrentHealth(_currentHealth);
+            _healthbar.SetCurrentHealth(_currentHealth, 1);
             if (_currentHealth <= 0)
                 Die(false);
             else
@@ -83,7 +82,7 @@ public class Enemy : MonoBehaviour
         _collider.enabled = false;
 
         SpawnCollectableOnKilled();
-        Died?.Invoke();
+        ScoreManager.GetInstance().Enemy_Died();
 
         if (isInstant)
         {
@@ -106,7 +105,7 @@ public class Enemy : MonoBehaviour
 
     IEnumerator StopWhenReachDestination()
     {
-        while (Mathf.Abs(transform.position.x - _destinationPoint.x) > 0.1f && Alive && _gameControllerInstance.GetCurrentState() == State.Playing)
+        while (Mathf.Abs(transform.position.x - _destinationPoint.x) > 0.1f && Alive && _gameControllerInstance.currentState == State.Playing)
         {
             if (transform.position.x > _destinationPoint.x)
                 transform.position = Vector3.MoveTowards(transform.position, _destinationPoint, _gameControllerInstance.GetMoveLeftSpeed() * Time.deltaTime);

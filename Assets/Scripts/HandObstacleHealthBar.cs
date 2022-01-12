@@ -4,61 +4,62 @@ using UnityEngine.UI;
 
 public class HandObstacleHealthBar : MonoBehaviour
 {
-    RawImage barRawImage;
-    float barMaskWidth;
-    RectTransform barMaskRectTransform;
+    Image _barImage;
+    RectTransform _barRectTransform;
     RectTransform edgeRectTransform;
-
-    GameController _gameControllerInstance;
 
     float _maxHealth;
     float _currentHealth;
+    float _normalizedHealth;
+
+    Vector2 _workSpace;
 
     void Awake()
     {
-        barMaskRectTransform = transform.Find("barMask").GetComponent<RectTransform>();
-        barRawImage = transform.Find("barMask").Find("bar").GetComponent<RawImage>();
+        _barImage = transform.Find("bar").GetComponent<Image>();
         edgeRectTransform = transform.Find("edge").GetComponent<RectTransform>();
-
-        barMaskWidth = barMaskRectTransform.sizeDelta.x;
-
-        _gameControllerInstance = GameController.GetInstance();
+        _barRectTransform = _barImage.GetComponent<RectTransform>();
     }
 
-    void Update()
+    void OnEnable()
     {
-        if (_gameControllerInstance.GetCurrentState() == State.Playing)
-        {
-            Rect uvRect = barRawImage.uvRect;
-            uvRect.x -= 0.2f * Time.deltaTime;
-            barRawImage.uvRect = uvRect;
+        _currentHealth = _maxHealth;
+        _barImage.fillAmount = HealthNormalized();
+    }
 
-            Vector2 barMaskSizeDelta = barMaskRectTransform.sizeDelta;
-            barMaskSizeDelta.x = HealthNormalized() * barMaskWidth;
-            barMaskRectTransform.sizeDelta = barMaskSizeDelta;
-
-            edgeRectTransform.anchoredPosition = new Vector2(HealthNormalized() * barMaskWidth, 0);
-
-            edgeRectTransform.gameObject.SetActive(HealthNormalized() < 1f);
-        }
+    void Start()
+    {
+        _currentHealth = _maxHealth;
+        _barImage.fillAmount = 1f;
     }
 
     float HealthNormalized() => _currentHealth / _maxHealth;
 
     public void SetMaxHealth(int maxHealth) => _maxHealth = (float)maxHealth;
 
-    public void SetCurrentHealth(int currentHealth)
+    public void SetCurrentHealth(int currentHealth, int damageTaken)
     {
-        StartCoroutine(DropHealthSmoothly(currentHealth));
+        if (currentHealth != _maxHealth)
+            StartCoroutine(DropHealthSmoothly(currentHealth, damageTaken));
     }
 
-    IEnumerator DropHealthSmoothly(int healthAfterHit)
+    IEnumerator DropHealthSmoothly(int healthAfterHit, int damageTaken)
     {
         while (healthAfterHit < _currentHealth)
         {
-            _currentHealth -= 0.04f;
-            yield return new WaitForSeconds(0.01f);
+            _currentHealth -= 0.035f * damageTaken;
+            DropHealth();
+            yield return new WaitForFixedUpdate();
         }
         _currentHealth = healthAfterHit;
+        DropHealth();
+    }
+
+    void DropHealth()
+    {
+        _normalizedHealth = HealthNormalized();
+        _barImage.fillAmount = _normalizedHealth;
+        _workSpace.Set(_normalizedHealth * _barRectTransform.sizeDelta.x, 0);
+        edgeRectTransform.anchoredPosition = _workSpace;
     }
 }

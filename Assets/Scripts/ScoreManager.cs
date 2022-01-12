@@ -23,33 +23,19 @@ public class ScoreManager : MonoBehaviour
         _instance = this;
     }
 
-    void OnEnable()
-    {
-        HandObstacles.Died += HandObstacle_Died;
-        Enemy.Died += Enemy_Died;
-        Coin.Collected += Coin_Collected;
-    }
-
-    void OnDisable()
-    {
-        HandObstacles.Died -= HandObstacle_Died;
-        Enemy.Died -= Enemy_Died;
-        Coin.Collected -= Coin_Collected;
-    }
-
-    void Coin_Collected()
+    public void Coin_Collected()
     {
         _coinScore++;
         _coinText.SetText("x " + _coinScore);
     }
 
-    void Enemy_Died()
+    public void Enemy_Died()
     {
         _enemyScore++;
         _enemyText.SetText("x " + _enemyScore);
     }
 
-    void HandObstacle_Died()
+    public void HandObstacle_Died()
     {
         _handscore++;
         _handText.SetText("x " + _handscore);

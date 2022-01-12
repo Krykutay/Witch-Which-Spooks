@@ -26,7 +26,7 @@ public class EnemyShooter : MonoBehaviour
 
     void Update()
     {
-        if (ReadyToFire() && _gameControllerInstance.GetCurrentState() == State.Playing)
+        if (ReadyToFire() && _gameControllerInstance.currentState == State.Playing)
             Fire();
     }
 

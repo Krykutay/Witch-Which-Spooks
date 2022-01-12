@@ -9,6 +9,9 @@ public class PlayerFireball : MonoBehaviour
     Collider2D _collider2d;
     Rigidbody2D _rigidbody;
 
+    float _lifeTime;
+    float _spawnTime;
+
     ObjectPoolingManager _objectPoolingManagerInstance;
     SoundManager _soundManagerInstance;
     GameController _gameControllerInstance;
@@ -31,13 +34,14 @@ public class PlayerFireball : MonoBehaviour
         Vector2 _initialVelocity = transform.right * (_velocity + _gameControllerInstance.GetMoveLeftSpeed() * 0.75f);
         _rigidbody.velocity = _initialVelocity;
 
-        StartCoroutine(Lifetime((_gameControllerInstance.objectsRightSideDepsawnPointOnX - transform.position.x) / _initialVelocity.x));
+        _spawnTime = Time.time;
+        _lifeTime = (_gameControllerInstance.objectsRightSideDepsawnPointOnX - transform.position.x) / _initialVelocity.x;
     }
 
-    IEnumerator Lifetime(float duration)
+    void Update()
     {
-        yield return new WaitForSeconds(duration);
-        _objectPoolingManagerInstance.ReturnToPool("playerFireball", this.gameObject);
+        if (Time.time > _spawnTime + _lifeTime)
+            _objectPoolingManagerInstance.ReturnToPool("playerFireball", gameObject);
     }
 
     void OnCollisionEnter2D(Collision2D collision)

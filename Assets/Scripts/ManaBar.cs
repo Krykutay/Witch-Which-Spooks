@@ -26,21 +26,21 @@ public class ManaBar : MonoBehaviour
 
     void Update()
     {
-        if (_gameControllerInstance.GetCurrentState() == State.Playing)
-        {
-            _manaNormalized = _playerManaInstance.GetManaNormalized();
+        if (_gameControllerInstance.currentState != State.Playing)
+            return;
 
-            Rect uvRect = barRawImage.uvRect;
-            uvRect.x -= 0.2f * Time.deltaTime;
-            barRawImage.uvRect = uvRect;
+        _manaNormalized = _playerManaInstance.GetManaNormalized();
 
-            Vector2 barMaskSizeDelta = barMaskRectTransform.sizeDelta;
-            barMaskSizeDelta.x = _manaNormalized * barMaskWidth;
-            barMaskRectTransform.sizeDelta = barMaskSizeDelta;
+        Rect uvRect = barRawImage.uvRect;
+        uvRect.x -= 0.2f * Time.deltaTime;
+        barRawImage.uvRect = uvRect;
 
-            edgeRectTransform.anchoredPosition = new Vector2(_manaNormalized * barMaskWidth, 0);
-            edgeRectTransform.gameObject.SetActive(_manaNormalized < 1f);
-        }
+        Vector2 barMaskSizeDelta = barMaskRectTransform.sizeDelta;
+        barMaskSizeDelta.x = _manaNormalized * barMaskWidth;
+        barMaskRectTransform.sizeDelta = barMaskSizeDelta;
+
+        edgeRectTransform.anchoredPosition = new Vector2(_manaNormalized * barMaskWidth, 0);
+        edgeRectTransform.gameObject.SetActive(_manaNormalized < 1f);
         
     }
 }

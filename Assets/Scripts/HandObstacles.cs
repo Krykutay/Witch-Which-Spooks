@@ -1,21 +1,22 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class HandObstacles : MonoBehaviour
 {
-    public static event Action Died;
-
     [SerializeField] int _health = 2;
     [SerializeField] string _handPoolKey;
 
     HandObstacleHealthBar _healthbar;
     Transform _canvas;
     Transform _collider;
+    Coroutine _disableHealthbar;
 
     Vector2 _handInitialScale;
     Vector2 _healthbarInitialScale;
+
+    float _lifeTime;
+    float _spawnTime;
 
     ObjectPoolingManager _objectPoolingManagerInstance;
     GameController _gameControllerInstance;
@@ -44,13 +45,14 @@ public class HandObstacles : MonoBehaviour
         _currentHealth = _health;
         _canvas.gameObject.SetActive(true);
         _healthbar.SetMaxHealth(_health);
-        _healthbar.SetCurrentHealth(_health);
+        _healthbar.SetCurrentHealth(_health, 0);
         _canvas.gameObject.SetActive(false);
 
         if (!_existingHands.ContainsKey(this))
             _existingHands.Add(this, _collider);
 
-        StartCoroutine(Lifetime((transform.position.x - _gameControllerInstance.objectsLeftSideDepsawnPointOnX) / _gameControllerInstance.GetMoveLeftSpeed()));
+        _spawnTime = Time.time;
+        _lifeTime = (transform.position.x - _gameControllerInstance.objectsLeftSideDepsawnPointOnX) / _gameControllerInstance.GetMoveLeftSpeed();
 
         if (_objectSpawned)
         {
@@ -69,19 +71,15 @@ public class HandObstacles : MonoBehaviour
         ScaleHandsAndHealthbar();
     }
 
-    IEnumerator Lifetime(float duration)
-    {
-        yield return new WaitForSeconds(duration);
-        ScaleBackToNormal();
-        _objectPoolingManagerInstance.ReturnToPool(_handPoolKey, this.gameObject);
-    }
-
     void Update()
     {
-        if (_gameControllerInstance.GetCurrentState() == State.Playing)
+        if (Time.time > _spawnTime + _lifeTime)
         {
-            transform.position += Vector3.left * Time.deltaTime * _gameControllerInstance.GetMoveLeftSpeed();
+            ScaleBackToNormal();
+            _objectPoolingManagerInstance.ReturnToPool(_handPoolKey, gameObject);
         }
+
+        transform.position += _gameControllerInstance.GetMoveLeftSpeed() * Time.deltaTime * Vector3.left;
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -90,9 +88,12 @@ public class HandObstacles : MonoBehaviour
         {
             _currentHealth--;
             _canvas.gameObject.SetActive(true);
-            StopCoroutine(DisableHealthBar());
-            StartCoroutine(DisableHealthBar());
-            _healthbar.SetCurrentHealth(_currentHealth);
+
+            if (_disableHealthbar != null)
+                StopCoroutine(DisableHealthBar());
+            _disableHealthbar = StartCoroutine(DisableHealthBar());
+
+            _healthbar.SetCurrentHealth(_currentHealth, 1);
             if (_currentHealth <= 0)
                 Die();
         }
@@ -106,9 +107,9 @@ public class HandObstacles : MonoBehaviour
 
     public void Die()
     {
-        Died?.Invoke();
+        ScoreManager.GetInstance().HandObstacle_Died();
         ScaleBackToNormal();
-        _objectPoolingManagerInstance.ReturnToPool(_handPoolKey, this.gameObject);
+        _objectPoolingManagerInstance.ReturnToPool(_handPoolKey, gameObject);
     }
 
     void ScaleHandsAndHealthbar()

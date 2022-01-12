@@ -19,15 +19,16 @@ public class PowerupCountdownBar : MonoBehaviour
 
     void Update()
     {
-        if (_gameControllerInstance.GetCurrentState() == State.Playing)
+        if (_gameControllerInstance.currentState != State.Playing)
+            return;
+
+        if (_remaningDuration <= 0)
         {
-            if (_remaningDuration <= 0)
-            {
-                return;
-            }
-            _remaningDuration -= Time.deltaTime;
-            _barImage.fillAmount = GetDurationNormalized();
+            return;
         }
+        _remaningDuration -= Time.deltaTime;
+        _barImage.fillAmount = GetDurationNormalized();
+        
     }
     
     float GetDurationNormalized()

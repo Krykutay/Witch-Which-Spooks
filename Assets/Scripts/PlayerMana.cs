@@ -37,7 +37,7 @@ public class PlayerMana : MonoBehaviour
 
     void Update()
     {
-        if (_gameControllerInstance.GetCurrentState() == State.Playing)
+        if (_gameControllerInstance.currentState == State.Playing)
         {
             _manaAmount += _manaRegenAmount * Time.deltaTime;
             _manaAmount = Mathf.Clamp(_manaAmount, 0f, _MANA_MAX);

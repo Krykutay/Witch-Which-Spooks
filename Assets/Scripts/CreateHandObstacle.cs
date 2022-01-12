@@ -47,7 +47,7 @@ public class CreateHandObstacle : MonoBehaviour
             hand = _objectPoolingManagerInstance.Get("handFour");
 
         hand.transform.rotation = Quaternion.Euler(0, 0, 0);
-        hand.transform.position = new Vector2(EnrichedSpawnPositionX, -5f);
+        hand.transform.position = new Vector2(EnrichedSpawnPositionX, -4.95f);
 
         hand.gameObject.SetActive(true);
     }
