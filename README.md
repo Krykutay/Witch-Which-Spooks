@@ -17,6 +17,8 @@ Fire: [Space]
 Pause/Menu/Back: [Esc or Tab]
 --
 
+test
+
 Key bindings can be altered on the controls settings.
 For better detailed hints, check "How to Play" tab on the Menu.
 
