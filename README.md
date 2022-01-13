@@ -13,8 +13,8 @@ Just a mini game I had enjoyed adding stuff on. Intended for and inspired by Hal
 
 Controls (Mouse & Keybard)
 
-Jump/Fly: [Left Mouse Button]
-Fire: [Space]
+Jump/Fly: [Left Mouse Button] <br/>
+Fire: [Space]<br/>
 Pause/Menu: [Esc or Tab]
 
 Key bindings can be altered on the controls settings.
