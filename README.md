@@ -1,28 +1,26 @@
 # Witch-Which-Spooks
 A spooky witch game on Unity
 
+![wws-mainss](https://user-images.githubusercontent.com/44427408/149323775-5ecce8f2-742e-4409-83fe-1e3524c3e219.png)
+
 ![Screenshot](https://user-images.githubusercontent.com/44427408/141692654-8390d441-48e1-456c-abf3-83f14b3df1df.png)
 
 
 To play, click the link below!
 
-https://simmer.io/@Krykutay/witchwhich-spooks
+https://simmer.io/@Krykutay/witch-which-spooks
 
-Just a mini game I've been enjoying adding stuff on. A flappy birdish yet flavored with fireballs and monsters and special powerups 2D game o/
+Just a mini game I had enjoyed adding stuff on. It was originally intended for Halloween, guess who forgot making it public. A flappy birdish yet flavored with fireballs and monsters 2D game o/
 
-Controls
-
+Controls (Mouse & Keyboard)
+--
 Jump/Fly: [Left Mouse Button]
-
 Fire: [Space]
+Pause/Menu/Back: [Esc or Tab]
+--
 
-Pause/Menu/Back: [Esc]
-
-Keybindings can be altered on the controls settings.
-
-For better detailed hints, check "How To Play" tab on the Menu.
-
-Enjoy getting rick rolled!
+Key bindings can be altered on the controls settings.
+For better detailed hints, check "How to Play" tab on the Menu.
 
 ![screenshot2](https://user-images.githubusercontent.com/44427408/141692662-12340863-04e8-4596-91c4-304af5258d89.png)
 
