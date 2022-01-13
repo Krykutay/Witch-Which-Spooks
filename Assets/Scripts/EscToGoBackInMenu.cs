@@ -1,17 +1,23 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class EscToGoBackInMenu : MonoBehaviour
 {
     [SerializeField] Button _backButton;
 
-    void Update()
+    void OnEnable()
     {
-        if (Keyboard.current.escapeKey.wasPressedThisFrame)
-        {
-            EscToGoBack();
-        }
+        InputManager.Instance.OnPauseAction += InputManager_PauseAction;
+    }
+
+    void OnDisable()
+    {
+        InputManager.Instance.OnPauseAction -= InputManager_PauseAction;
+    }
+
+    void InputManager_PauseAction()
+    {
+        EscToGoBack();
     }
 
     public void EscToGoBack()

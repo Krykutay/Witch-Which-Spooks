@@ -55,30 +55,33 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
+        InputManager.Instance.OnPauseAction += InputManager_PauseAction;
         WitchKill.GetInstance().PlayerDied += WitchKill_PlayerDied;
     }
 
     void OnDisable()
     {
+        InputManager.Instance.OnPauseAction -= InputManager_PauseAction;
         WitchKill.GetInstance().PlayerDied -= WitchKill_PlayerDied;
     }
 
     void Update()
     {
-        if (currentState == State.Playing)
-        {
-            _difficultyTimer -= Time.deltaTime;
-            if (_difficultyTimer < 0)
-            {
-                _difficultyTimer = _difficultyTimerMax;
-                SetDifficulty();
-            }
+        if (currentState != State.Playing)
+            return;
 
-            if (Keyboard.current.escapeKey.wasPressedThisFrame)
-            {
-                Game_Paused();
-            }
+        _difficultyTimer -= Time.deltaTime;
+        if (_difficultyTimer < 0)
+        {
+            _difficultyTimer = _difficultyTimerMax;
+            SetDifficulty();
         }
+    }
+
+    void InputManager_PauseAction()
+    {
+        if (currentState == State.Playing)
+            Game_Paused();
     }
 
     void WitchKill_PlayerDied()
