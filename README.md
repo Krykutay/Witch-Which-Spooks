@@ -9,15 +9,13 @@ https://simmer.io/@Krykutay/witch-which-spooks
 
 ![Screenshot](https://user-images.githubusercontent.com/44427408/141692654-8390d441-48e1-456c-abf3-83f14b3df1df.png)
 
-Just a mini game I had enjoyed adding stuff on. It was originally intended for Halloween, guess who forgot making it public. A flappy birdish yet flavored with fireballs and monsters 2D game o/
-Controls (Mouse & Keyboard)
---
+Just a mini game I had enjoyed adding stuff on. Intended for and inspired by Halloween itself. A flappy birdish game flavored with fireballs and monsters o/
+
+Controls (Mouse & Keybard)
+
 Jump/Fly: [Left Mouse Button]
 Fire: [Space]
-Pause/Menu/Back: [Esc or Tab]
---
-
-test
+Pause/Menu: [Esc or Tab]
 
 Key bindings can be altered on the controls settings.
 For better detailed hints, check "How to Play" tab on the Menu.
