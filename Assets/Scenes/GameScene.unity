@@ -19350,7 +19350,7 @@ MonoBehaviour:
     _initialSize: 2
   - _tag: particleEffect
     _prefab: {fileID: 7041394975000794037, guid: 5ea50fa03801c744b83a7e194d6f475e, type: 3}
-    _initialSize: 8
+    _initialSize: 10
 --- !u!1 &1633401497
 GameObject:
   m_ObjectHideFlags: 0
