@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 7e3d4b74d96e3a74288078858b8d486c
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - _jumpSound: {fileID: 8300000, guid: 7b4ff98a68b60c5449e17a04e1534488, type: 3}
+  - _fireballSound: {fileID: 8300000, guid: 7d05c75b6f10041488ec57a755cff237, type: 3}
+  - _fireballHitSound: {fileID: 8300000, guid: 359d21b9079a2f648ba3280533df8161, type: 3}
+  - _witchLaugh: {fileID: 8300000, guid: 7af12d9e19460e446a9979fcc784f14e, type: 3}
+  - _coinCollect: {fileID: 8300000, guid: 137136eff6e146645b87be2006c9629a, type: 3}
+  executionOrder: -20
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Coins
+  - Potion
+  - BluePotionBar
+  - GreenPotionBar
+  - RedPotionBar
+  - ObjectDespawner
+  - PlayerFireball
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - ObjectDespawner
+  - Water
+  - UI
+  - Background
+  - Ground
+  - Player
+  - Shot
+  - EnemyShot
+  - CoinAndPowerup
+  - PlayerNoCollision
+  - Enemy
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Background
+    uniqueID: 3356574207
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
