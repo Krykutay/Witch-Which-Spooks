@@ -5,7 +5,7 @@ To play, click the link below!
 
 https://simmer.io/@Krykutay/witch-which-spooks
 
-![wws-mainss](https://user-images.githubusercontent.com/44427408/149323775-5ecce8f2-742e-4409-83fe-1e3524c3e219.png)
+![wws-mainss](https://user-images.githubusercontent.com/44427408/150218476-7c13002d-1342-4f59-8bb1-f75452e0c8b3.png)
 
 ![Screenshot](https://user-images.githubusercontent.com/44427408/141692654-8390d441-48e1-456c-abf3-83f14b3df1df.png)
 
