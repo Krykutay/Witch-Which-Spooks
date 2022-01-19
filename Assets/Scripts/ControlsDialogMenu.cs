@@ -21,6 +21,8 @@ public class ControlsDialogMenu : MonoBehaviour
     bool _hasControlsChanged;
     int _keybindIndex;
 
+    const int TOTAL_BINDINGS_COUNT = 2;
+
     void OnDisable()
     {
         if (_waitingForInputPanels[_keybindIndex].activeSelf)
@@ -109,7 +111,7 @@ public class ControlsDialogMenu : MonoBehaviour
 
         int bindingIndex = 0;
 
-        for (int i = 0; i < _actions.actionMaps[0].actions.Count; i++)
+        for (int i = 0; i < TOTAL_BINDINGS_COUNT; i++)
         {
             _bindingDisplayNameTexts[i].text = GetBindingDisplayName(_actions.actionMaps[0].actions[i], bindingIndex);
         }
@@ -139,7 +141,7 @@ public class ControlsDialogMenu : MonoBehaviour
         // Cache a reference to the current binding.
         InputBinding newBinding = action.bindings[bindingIndex];
         // Check all of the bindings in the current action map to make sure there are no duplicates.
-        for (int i = 0; i < action.actionMap.bindings.Count; i++)
+        for (int i = 0; i < TOTAL_BINDINGS_COUNT; i++)
         {
             InputBinding binding = _actions.actionMaps[0].actions[i].bindings[bindingIndex];
             if (binding.action == newBinding.action)
