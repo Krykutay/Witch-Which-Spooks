@@ -62,7 +62,7 @@ Each powerup pops up it's own visual effect. Blue one sets sparkles around the w
 <img src="https://user-images.githubusercontent.com/44427408/150788033-b95be2fe-4cc6-4262-b8eb-dbe4e945e237.jpg" width="720" height="405"> <br/>
 <img src="https://user-images.githubusercontent.com/44427408/150788036-608ac095-e35b-4f17-9010-c1f6c05cbc12.jpg" width="720" height="405"> <br/>
 
-These icons on top left indicates that the corresponding powerup is active and also tell its remaning duration. <br/>
+These icons on bottom left indicates that the corresponding powerup is active and also tell its remaning duration. <br/>
 <img src="https://user-images.githubusercontent.com/44427408/150788041-4ebc7195-bca4-41fc-b969-49d732299345.jpg" width="720" height="405"> <br/>
 
 ### Gameover
