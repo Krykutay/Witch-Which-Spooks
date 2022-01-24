@@ -50,17 +50,20 @@ The game has two scenes, first one being the main menu with its play button, set
 
 ## UI Elements
 ### Settings
-Audio Settings offer the player a chance to alter Master, Effects, Music and Voice Volumes.<br/>
-<img src="https://user-images.githubusercontent.com/44427408/150685194-e9c31e10-1101-4a5e-969d-50c70fca5eb9.jpg" width="390" height="250"> <br/> <br/>
+Audio Settings offer the player a chance to alter Master, Effects and Music Volumes.<br/>
+<img src="https://user-images.githubusercontent.com/44427408/150787361-1c3d24c5-e46f-4038-a42f-bce889e726da.jpg" width="390" height="250"> <br/> <br/>
 Graphics Settings offer the player a chance to change Quality, Resolution, FullScreen(or not), V-Sync(or not). <br/>
-<img src="https://user-images.githubusercontent.com/44427408/150685219-25eb842c-d655-4a41-b552-a0a2bc8c60aa.jpg" width="390" height="250"> <br/> <br/>
+<img src="https://user-images.githubusercontent.com/44427408/150787369-1d27a399-2f27-4d0c-a7f7-7123f0d15a37.jpg" width="390" height="250"> <br/> <br/>
 Controls Settings offer the player a chance to change any key binding. <br/>
-<img src="https://user-images.githubusercontent.com/44427408/150685265-bacd5063-d7dd-4ee9-bdb6-77c46d453dd4.jpg" width="390" height="250"> <br/> <br/>
+<img src="https://user-images.githubusercontent.com/44427408/150787373-2dad1a9b-2ab9-4509-beb4-219ace976a86.jpg" width="390" height="250"> <br/> <br/>
 
 ### Powerup Visual Effects & Duration Countdown
-Each powerup pops up it's own visual effect. Health has its own particle-system animations, Offensive powerup vibrates an orange aura and the character glooms orange while Defensive powerup vibrates a blue auro and the character glooms blue. <br/>
+Each powerup pops up it's own visual effect. Blue one sets sparkles around the witch fuels her mana to full immediately, and increases her mana regeneration for it's duration, green one moves witch into pellucid state and makes her translucent, in return she becomes immune to collisions. Red one simply vaporizes the entire hostile living. <br/>
+<img src="https://user-images.githubusercontent.com/44427408/150788033-b95be2fe-4cc6-4262-b8eb-dbe4e945e237.jpg" width="720" height="405"> <br/>
+<img src="https://user-images.githubusercontent.com/44427408/150788036-608ac095-e35b-4f17-9010-c1f6c05cbc12.jpg" width="720" height="405"> <br/>
+
 These icons on top left indicates that the corresponding powerup is active and also tell its remaning duration. <br/>
-<img src="https://user-images.githubusercontent.com/44427408/150685532-85cbc5b0-a237-4465-93d7-4e0aa00090bb.jpg" width="720" height="405"> <br/>
+<img src="https://user-images.githubusercontent.com/44427408/150788041-4ebc7195-bca4-41fc-b969-49d732299345.jpg" width="720" height="405"> <br/>
 
 ### Gameover
 When the player dies, or tries to leave the scene, the gameover panel pops-up and turns the collected stones into gems as well as showing the kill/collect counts and highscore. <br/>
