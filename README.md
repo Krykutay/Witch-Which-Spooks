@@ -3,7 +3,7 @@ A spooky witch game on Unity
 
 To play, click the link below!
 
-Gameplay video on [YouTube: Skeleton Farming Simulator](https://youtu.be/5Be4gMgr_7E) <br/>
+Gameplay video on [YouTube: Witch Which Spooks](https://youtu.be/5Be4gMgr_7E) <br/>
 
 Click the link to play! https://simmer.io/@Krykutay/witch-which-spooks  <br/>
 
