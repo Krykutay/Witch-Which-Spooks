@@ -53,7 +53,7 @@ The game has two scenes, first one being the main menu with its play button, set
 Audio Settings offer the player a chance to alter Master, Effects and Music Volumes.<br/>
 <img src="https://user-images.githubusercontent.com/44427408/150787361-1c3d24c5-e46f-4038-a42f-bce889e726da.jpg" width="390" height="250"> <br/> <br/>
 Graphics Settings offer the player a chance to change Quality, Resolution, FullScreen(or not), V-Sync(or not). <br/>
-<img src="https://user-images.githubusercontent.com/44427408/150787369-1d27a399-2f27-4d0c-a7f7-7123f0d15a37.jpg" width="390" height="250"> <br/> <br/>
+<img src="https://user-images.githubusercontent.com/44427408/150788404-29c01028-fe09-4186-a1f6-88c8fbf94d3e.jpg" width="390" height="250"> <br/> <br/>
 Controls Settings offer the player a chance to change any key binding. <br/>
 <img src="https://user-images.githubusercontent.com/44427408/150787373-2dad1a9b-2ab9-4509-beb4-219ace976a86.jpg" width="390" height="250"> <br/> <br/>
 
