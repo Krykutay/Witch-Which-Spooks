@@ -57,7 +57,7 @@ Graphics Settings offer the player a chance to change Quality, Resolution, FullS
 Controls Settings offer the player a chance to change any key binding. <br/>
 <img src="https://user-images.githubusercontent.com/44427408/150787373-2dad1a9b-2ab9-4509-beb4-219ace976a86.jpg" width="390" height="250"> <br/> <br/>
 
-### Player mana bar & Enemy Health Bar
+### Player Mana Bar & Enemy Health Bar
 Blue bar on the left indicates the remaning mana of the witch. The red bar on top of the enemy monsters & cyan bar on top of the ghostly hands shows the remaning health of them. <br/>
 <img src="https://user-images.githubusercontent.com/44427408/150789693-1f835207-d4be-4ec6-b0df-36ca26f21ab4.jpg" width="720" height="405"> <br/>
 
